@@ -1,4 +1,7 @@
-import pygame
+# This is pong created using pygame by Brodie Busby
+
+
+import pygame   # import the pygame module
 
 # pygame setup
 pygame.init()
@@ -7,20 +10,24 @@ pygame.display.set_caption('Pong Remake')
 clock = pygame.time.Clock()
 running = True
 
+# Ball details such as position and speed
 ball_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 ball_speed = pygame.Vector2(6, 6)  # Adjust the ball's initial speed as needed
 
+# player details such as position and speed
 player_1_pos = pygame.Vector2(screen.get_width() - 50, 100)
 player_2_pos = pygame.Vector2(10, 200)
 player_width = screen.get_width() / 40
 player_height = screen.get_height() * .3
 
+# Font for the text on the screen
 font = pygame.font.Font('freesansbold.ttf', 32)
 
+# Instatiate score variables
 player_1_score = 0
 player_2_score = 0
 
-
+# Main game loop
 while running:
     #Detect if the user wants to quit the game
     for event in pygame.event.get():
