@@ -1,4 +1,4 @@
-# This is pong created using pygame by Brodie Busby
+# This is pong created using pygame by Brodie Busby 
 
 
 import pygame   # import the pygame module
@@ -14,7 +14,7 @@ running = True
 ball_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 ball_speed = pygame.Vector2(6, 6)  # Adjust the ball's initial speed as needed
 
-# player details such as position and speed
+# Player details such as position and speed
 player_1_pos = pygame.Vector2(screen.get_width() - 50, 100)
 player_2_pos = pygame.Vector2(10, 200)
 player_width = screen.get_width() / 40
