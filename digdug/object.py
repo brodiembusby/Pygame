@@ -73,7 +73,13 @@ class Object:
         Get rect, 50, 50 is the collison around object
         """
         return pygame.Rect(self.x, self.y, 40 , 40)
-
+    def can_move(self, new_x, new_y, game_board):
+        new_rect = pygame.Rect(new_x, new_y, 50, 50)
+        for obj in game_board:
+            if obj is not None and obj != self:
+                if new_rect.colliderect(obj.getRect()):
+                    return False
+        return True
 class Player(Object):
     """"
     A Class for a Player object
@@ -119,13 +125,7 @@ class Enemy(Object):
     def __init__(self, x, y):
         super().__init__(x, y)
     
-    def can_move(self, new_x, new_y, game_board):
-        new_rect = pygame.Rect(new_x, new_y, 50, 50)
-        for obj in game_board:
-            if obj is not None and obj != self:
-                if new_rect.colliderect(obj.getRect()):
-                    return False
-        return True
+
 
     def move(self, game_board):
         random_direction = randint(1, 4)
@@ -173,11 +173,14 @@ class Rock(Object):
         self.playerUnder = False
         self.name = "rock"
 
-    def fall(self):    
+    def fall(self,game_board):    
         """ If there is nothing under the rock fall down"""
         
-        if self.y - 1 != None:
-            self.y = self.y - 1
+        new_x = self.getX()
+        new_y = self.getY() + 50
+        if self.can_move(new_x, new_y, game_board):
+            self.setPosition(new_x, new_y)
+            
 
 
 class Fygar(Enemy):

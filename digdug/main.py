@@ -12,7 +12,6 @@ pygame.init()
 screen = pygame.display.set_mode((constant.SCREEN_WIDTH, constant.SCREEN_HEIGHT))
 pygame.display.set_caption("DigDug")
 
-
 # Text options
 pygame.font.init()              
 my_font = pygame.font.SysFont('Arial', 30)
@@ -34,8 +33,6 @@ game = Game()
 game.generateBoard(constant.GAME_BOARD)
 running = True
 
-
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -52,10 +49,11 @@ while running:
         if obj is None:
             continue
         obj_position = obj.getPosition()
-        obj_name = obj.getName()
+        obj_name = obj.getName()     
         
-        # Draw the object based on its type
+        # Draw the object based on its type 
         if obj_name == "rock":
+            obj.fall(game.getBoard())
             screen.blit(images["rock"], obj_position)
         elif obj_name == "fygar":
             obj.move(game.getBoard()) 
@@ -83,8 +81,7 @@ while running:
     
     # Display Items on screen
     screen.blit(flipped_player_image , player.getPosition())
-    text_surface = my_font.render(f'Points:{game.getPoints()}', False, (0, 10, 0))
-        
+    text_surface = my_font.render(f'Points:{game.getPoints()}', False, (0, 10, 0))       
     screen.blit(text_surface, (425,0))
     pygame.display.flip()
 
